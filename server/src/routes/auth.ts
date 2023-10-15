@@ -3,14 +3,13 @@ const router = express.Router();
 import { UserModel } from '../models/User.js';
 import mongoose from 'mongoose';
 import {z} from 'zod'
-import authenticateUser from '../middlware/authUser.js';
+import { authenticateJWT } from '../middlware/authUser.js';
+
 import jsonwebtoken from "jsonwebtoken"
 import bcrypt from "bcrypt"
 const SECRET :string = "someranw582er0948doimje509345brigh"
 
-interface CustomRequest extends Request {
-    user: any; // Define the user object type here
-}
+
 
 
 const userObject = z.object({
@@ -31,7 +30,7 @@ const UserValidation = (req:Request,res:Response,next:NextFunction)=>{
 
 }
 
-router.post("/register",UserValidation,async(req:Request,res:Response)=>{
+router.post("/register",UserValidation,async(req,res)=>{
     try{
         const {name,email,password} = req.body;
         const salt = await bcrypt.genSalt(10);
@@ -47,12 +46,8 @@ router.post("/register",UserValidation,async(req:Request,res:Response)=>{
             password:secPass
         });
 
-        const data = {
-            user:{
-                id:userExits.id
-            }
-        }
-        const authToken = jsonwebtoken.sign(data,SECRET);
+        
+        const authToken = jsonwebtoken.sign({id:userExits._id},SECRET);
         res.json({authToken})
 
     }
@@ -61,17 +56,39 @@ router.post("/register",UserValidation,async(req:Request,res:Response)=>{
     }
 });
 
-router.get("/me",authenticateUser,async(req:CustomRequest,res:Response)=>{
+router.post("/login",async(req,res)=>{
+    const {email,password} = req.body
     try {
-        
-        const id = req.user.id;
-        const userFound = await UserModel.findById(id).select("-password");
+        let fuser = await UserModel.findOne({email});
+        if(!fuser){
+            return res.status(400).json({error:"Enter valid details"});
 
-        res.send(userFound)
+        }
+        const passwordCompare = bcrypt.compare(password,fuser.password);
+        if (!passwordCompare) {
+            return res.status(400).json({ error: "Enter valid details" });
+
+        }
+        const authToken = jsonwebtoken.sign({id:fuser.id}, SECRET);
+        res.json({ authToken });
+
     } catch (error) {
-        console.log("Does this really matter")
+        console.error(error)
     }
 })
+
+router.get("/me",authenticateJWT,async(req,res)=>{
+    const usreId = req.headers['userId'];
+    const user = await UserModel.findOne({_id:usreId}).select("-password");
+    if(user){
+        return res.json({user});
+    }
+    else{
+        res.status(403).json({message:"User not logged in!"})
+    }
+})
+
+
 
 export default router
 

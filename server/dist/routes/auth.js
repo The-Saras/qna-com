@@ -1,8 +1,17 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 import express from 'express';
 const router = express.Router();
 import { UserModel } from '../models/User.js';
 import { z } from 'zod';
-import authenticateUser from '../middlware/authUser.js';
+import { authenticateJWT } from '../middlware/authUser.js';
 import jsonwebtoken from "jsonwebtoken";
 import bcrypt from "bcrypt";
 const SECRET = "someranw582er0948doimje509345brigh";
@@ -21,41 +30,54 @@ const UserValidation = (req, res, next) => {
         res.status(400).json({ message: "Some error try again you idiot" });
     }
 };
-router.post("/register", UserValidation, async (req, res) => {
+router.post("/register", UserValidation, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name, email, password } = req.body;
-        const salt = await bcrypt.genSalt(10);
-        const secPass = await bcrypt.hash(password, salt);
-        let userExits = await UserModel.findOne({ email: email });
+        const salt = yield bcrypt.genSalt(10);
+        const secPass = yield bcrypt.hash(password, salt);
+        let userExits = yield UserModel.findOne({ email: email });
         if (userExits) {
             return res.status(400).json({ error: "Emial already in use" });
         }
-        userExits = await UserModel.create({
+        userExits = yield UserModel.create({
             name: name,
             email: email,
             password: secPass
         });
-        const data = {
-            user: {
-                id: userExits.id
-            }
-        };
-        const authToken = jsonwebtoken.sign(data, SECRET);
+        const authToken = jsonwebtoken.sign({ id: userExits._id }, SECRET);
         res.json({ authToken });
     }
     catch (error) {
         console.error(error);
     }
-});
-router.get("/me", authenticateUser, async (req, res) => {
+}));
+router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, password } = req.body;
     try {
-        const id = req.user.id;
-        const userFound = await UserModel.findById(id).select("-password");
-        res.send(userFound);
+        let fuser = yield UserModel.findOne({ email });
+        if (!fuser) {
+            return res.status(400).json({ error: "Enter valid details" });
+        }
+        const passwordCompare = bcrypt.compare(password, fuser.password);
+        if (!passwordCompare) {
+            return res.status(400).json({ error: "Enter valid details" });
+        }
+        const authToken = jsonwebtoken.sign({ id: fuser.id }, SECRET);
+        res.json({ authToken });
     }
     catch (error) {
-        console.log("Does this really matter");
+        console.error(error);
     }
-});
+}));
+router.get("/me", authenticateJWT, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const usreId = req.headers['userId'];
+    const user = yield UserModel.findOne({ _id: usreId }).select("-password");
+    if (user) {
+        return res.json({ user });
+    }
+    else {
+        res.status(403).json({ message: "User not logged in!" });
+    }
+}));
 export default router;
 //# sourceMappingURL=auth.js.map
