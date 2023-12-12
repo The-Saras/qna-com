@@ -55,10 +55,22 @@ router.post("/createque",authenticateJWT,async(req,res)=>{
     res.json({ QueToUpload });
 });
 
+
+router.get("/allqna",authenticateJWT,async(req,res)=>{
+    try {
+        const allQnas = await QnaModel.find().populate({path:"createdBy",select:"name"}).select("-questions");
+        res.json({allQnas});    
+        
+    } catch (error) {
+        console.log(error)
+    }
+    
+})
+
 router.get("/getallque/:id",authenticateJWT,async(req,res)=>{
     const qnaId = req.params.id
     
-    const QuestionsInArray = await QnaModel.findById(qnaId).populate('questions').select('questions');
+    const QuestionsInArray = await QnaModel.findById(qnaId).populate('questions').select('questions -_id');
     res.json({QuestionsInArray});
 
 })

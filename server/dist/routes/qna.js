@@ -49,10 +49,18 @@ router.post("/createque", authenticateJWT, (req, res) => __awaiter(void 0, void 
     QueToUpload.save();
     res.json({ QueToUpload });
 }));
+router.get("/allqna", authenticateJWT, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const allQnas = yield QnaModel.find().populate({ path: "createdBy", select: "name" }).select("-questions");
+        res.json({ allQnas });
+    }
+    catch (error) {
+        console.log(error);
+    }
+}));
 router.get("/getallque/:id", authenticateJWT, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const qnaId = req.params.id;
-    console.log(qnaId);
-    const QuestionsInArray = yield QnaModel.findById(qnaId).populate('questions').select('questions');
+    const QuestionsInArray = yield QnaModel.findById(qnaId).populate('questions').select('questions -_id');
     res.json({ QuestionsInArray });
 }));
 export default router;
