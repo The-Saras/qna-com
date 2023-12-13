@@ -38,9 +38,10 @@ router.post("/createqna", authenticateJWT, QnaValidation, (req, res) => __awaite
     });
     res.json({ Qna });
 }));
-router.post("/createque", authenticateJWT, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { text, id } = req.body;
-    const QueToUpload = yield QnaModel.findById(id);
+router.post("/createque/:location", authenticateJWT, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { text } = req.body;
+    const locationId = req.params.location;
+    const QueToUpload = yield QnaModel.findById(locationId);
     if (!QueToUpload) {
         return res.status(400).send({ err: "Qna not found" });
     }

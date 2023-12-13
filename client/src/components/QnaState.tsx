@@ -40,7 +40,7 @@ const QnaState = () =>{
             
             <span key={value._id}>
 
-              <Qna name={value.name} creator={value.createdBy.name} />
+              <Qna name={value.name} creator={value.createdBy.name} _id={value._id} />
               <br />
             
             </span>

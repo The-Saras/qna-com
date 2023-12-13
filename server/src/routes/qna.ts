@@ -42,9 +42,11 @@ router.post("/createqna",authenticateJWT,QnaValidation,async(req,res)=>{
 
 })
 
-router.post("/createque",authenticateJWT,async(req,res)=>{
-    const {text,id} = req.body;
-    const QueToUpload = await QnaModel.findById(id);
+router.post("/createque/:location",authenticateJWT,async(req,res)=>{
+    const {text} = req.body;
+    const locationId = req.params.location
+
+    const QueToUpload = await QnaModel.findById(locationId);
     if(!QueToUpload){
         return res.status(400).send({err:"Qna not found"});
 

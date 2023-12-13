@@ -12,6 +12,7 @@ import {
   useRecoilState,
   useRecoilValue,
 } from 'recoil';
+import QnaPage from './components/QnaPage';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <Route path={'/signup'} element={<Signup />} />
             <Route path={'/signup'} element={<Signup />} />
             <Route path = {'/login'} element={<Login />} />
+            <Route path={'/getallque/:qnaid'} element={<QnaPage />} />
             
           </Routes>
       </RecoilRoot>
