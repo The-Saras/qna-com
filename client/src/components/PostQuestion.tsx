@@ -6,6 +6,11 @@ import axios from "axios"
 
 import { useState } from "react"
 import {Alert} from "@mui/material"
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:3000',{
+    reconnection:true
+})
 const PostQuestion = (props:any) => {
     const [que,addQue] = useRecoilState(questiontoask);
     const [loading,setLoading] = useState(false)
@@ -30,7 +35,11 @@ const PostQuestion = (props:any) => {
             if(response){
                 
                 setLoading(true);
+                socket.emit('new-que', response.data)
+                console.log(response)
+               
             }
+            
              
         } catch (error) {
             console.log(error)
@@ -48,7 +57,7 @@ const PostQuestion = (props:any) => {
                                 <Alert severity="info" onClose={() => setLoading(false)}>
                                     Question posted Successfully!
                                 </Alert>
-                            )}
+                )}
 
                 <TextField label='Ask Question' variant="outlined" onChange={(e)=>{
                     addQue(e.target.value);
@@ -56,7 +65,7 @@ const PostQuestion = (props:any) => {
                 <br />
                 <Button variant="contained" size="large" color="success" onClick={submitQuestion} >Ask </Button>
             </Box>
-        </>
+        </> 
     )
 }
 

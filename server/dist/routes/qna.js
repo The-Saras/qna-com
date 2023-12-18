@@ -38,6 +38,20 @@ router.post("/createqna", authenticateJWT, QnaValidation, (req, res) => __awaite
     });
     res.json({ Qna });
 }));
+router.put("/upvote/:qid", authenticateJWT, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const qid = req.params.qid;
+        QuesstionModel.updateOne({ _id: qid }, { $inc: { upvotes: 1 } })
+            .then(() => {
+            return res.json({ msg: "success" });
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+    catch (err) {
+        console.log(err);
+    }
+}));
 router.post("/createque/:location", authenticateJWT, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { text } = req.body;
     const locationId = req.params.location;
@@ -48,7 +62,7 @@ router.post("/createque/:location", authenticateJWT, (req, res) => __awaiter(voi
     const QueAsked = yield QuesstionModel.create({ text: text });
     QueToUpload.questions.push(QueAsked);
     QueToUpload.save();
-    res.json({ QueToUpload });
+    res.json({ QueAsked });
 }));
 router.get("/allqna", authenticateJWT, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -61,7 +75,10 @@ router.get("/allqna", authenticateJWT, (req, res) => __awaiter(void 0, void 0, v
 }));
 router.get("/getallque/:id", authenticateJWT, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const qnaId = req.params.id;
-    const QuestionsInArray = yield QnaModel.findById(qnaId).populate('questions').select('questions -_id');
+    const QuestionsInArray = yield QnaModel.findById(qnaId).populate({
+        path: 'questions',
+        options: { sort: { upvotes: -1 } } // Sort questions by upvotes in ascending order
+    }).select('questions -_id');
     res.json({ QuestionsInArray });
 }));
 export default router;

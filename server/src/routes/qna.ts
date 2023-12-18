@@ -40,6 +40,21 @@ router.post("/createqna",authenticateJWT,QnaValidation,async(req,res)=>{
 
     res.json({Qna})
 
+});
+router.put("/upvote/:qid",authenticateJWT,async(req,res)=>{
+    try{
+        const qid = req.params.qid;
+        QuesstionModel.updateOne({_id:qid},{$inc:{upvotes:1}})
+        .then(()=>{
+            
+            return res.json({msg:"success"})
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
+    catch(err){
+        console.log(err)
+    }
 })
 
 router.post("/createque/:location",authenticateJWT,async(req,res)=>{
@@ -54,8 +69,9 @@ router.post("/createque/:location",authenticateJWT,async(req,res)=>{
     const QueAsked = await QuesstionModel.create({text:text});
     QueToUpload.questions.push(QueAsked)
     QueToUpload.save()
-    res.json({ QueToUpload });
+    res.json({ QueAsked });
 });
+
 
 
 router.get("/allqna",authenticateJWT,async(req,res)=>{
@@ -72,7 +88,10 @@ router.get("/allqna",authenticateJWT,async(req,res)=>{
 router.get("/getallque/:id",authenticateJWT,async(req,res)=>{
     const qnaId = req.params.id
     
-    const QuestionsInArray = await QnaModel.findById(qnaId).populate('questions').select('questions -_id');
+    const QuestionsInArray= await QnaModel.findById(qnaId).populate({
+        path: 'questions',
+        options: { sort: { upvotes: -1 } } // Sort questions by upvotes in ascending order
+    }).select('questions -_id');
     res.json({QuestionsInArray});
 
 })
