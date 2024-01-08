@@ -3,6 +3,9 @@ import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import axios from "axios";
 import { useState } from "react";
 
+import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/questions-page.css"
+
+
 const SingleQuestion = (props:any)=>{
     const clckLimit = 1;
     const [clickcount,setClickcount] = useState(0);
@@ -26,7 +29,7 @@ const SingleQuestion = (props:any)=>{
     }
     return(
         <>
-        <Card variant="outlined" sx={{ minWidth: 275, margin: 2 }}>
+        <Card className="questions-page-cards" variant="outlined" sx={{ minWidth: 275, margin: 2 }}>
         <CardContent>
 
         <Typography component="div" variant="h6">Question: {props.text}</Typography>

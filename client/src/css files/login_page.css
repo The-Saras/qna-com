@@ -1,0 +1,88 @@
+.login-navbar{
+    width: 130%;
+    height: 6rem;
+    position: relative;
+    left: -15%;
+    background-color: lightseagreen;
+    display: flex;
+
+}
+.login-navbar ul{
+    display: flex;
+    position: relative;
+    list-style: none;
+    left: 75%;
+    top: 10%;
+}
+
+.login-navbar ul li{
+    margin:  10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.login-navbar ul li:first-of-type:hover:after{
+    content: "";
+    position: absolute;
+    background-color: red;
+    bottom: 45%;
+    width: 28%;
+    height: 2px;
+    left: 27.5%;
+}
+.login-navbar ul li:last-of-type:hover:after{
+    content: "";
+    position: absolute;
+    background-color: red;
+    bottom: 45%;
+    width: 28%;
+    height: 2px;
+    left: 66%;
+}
+.login-page-title{
+    position: relative;
+    left: 45%;
+    top: 12%;
+    font-size: 22px;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;    
+    
+}
+.login-outerbox{
+    position: absolute;
+    width: 25%;
+    height: 65%;
+    background-color: azure;
+    top: 25%;
+    left: 37%;
+    border-radius: 20px;
+    box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.5);
+}
+
+.login-title{
+    position: relative;
+    font-size: 5px;
+    top: 15vh;
+}
+
+.login-email-field{
+    position: relative;
+    /* width: 20vh; */
+    display: block;
+    left: 36%;
+    top: 20vh;
+}
+
+.login-pass-field{
+    position: relative;
+    /* width: 20vw; */
+    display: block;
+    left: 8%;
+    top: 29.5vh;
+}
+.login-btn{
+    position: relative;
+    left: -10%;
+    height: 4vh;
+    top: 45vh;
+}

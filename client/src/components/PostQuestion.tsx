@@ -8,6 +8,8 @@ import { useState } from "react"
 import {Alert} from "@mui/material"
 import * as io from "socket.io-client";
 
+import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/questions-page.css"
+
 
 const socket = io.connect('http://localhost:3000',{
     reconnection:true
@@ -65,7 +67,7 @@ const PostQuestion = (props:any) => {
                     addQue(e.target.value);
                 }} />
                 <br />
-                <Button variant="contained" size="large" color="success" onClick={submitQuestion} >Ask </Button>
+                <Button className="qpage-add-btn" variant="contained" size="large" color="success" onClick={submitQuestion} >Ask </Button>
             </Box>
         </> 
     )

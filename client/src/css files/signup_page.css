@@ -1,0 +1,98 @@
+
+.s-navbar{
+    width: 130%;
+    height: 6rem;
+    position: relative;
+    left: -15%;
+    background-color: lightseagreen;
+    display: flex;
+
+}
+.s-navbar ul{
+    display: flex;
+    position: relative;
+    list-style: none;
+    left: 75%;
+    top: 10%;
+}
+
+.s-navbar ul li{
+    margin:  10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.s-navbar ul li:first-of-type:hover:after{
+    content: "";
+    position: absolute;
+    background-color: red;
+    bottom: 45%;
+    width: 28%;
+    height: 2px;
+    left: 27.5%;
+}
+.s-navbar ul li:last-of-type:hover:after{
+    content: "";
+    position: absolute;
+    background-color: red;
+    bottom: 45%;
+    width: 28%;
+    height: 2px;
+    left: 66%;
+}
+.s-page-title{
+    position: relative;
+    left: 45%;
+    top: 12%;
+    font-size: 22px;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;    
+    
+    
+}
+
+.signup-title{
+    position: relative;
+    font-size: 5px;
+    top: 15vh;
+}
+
+.signup-outerbox{
+    position: absolute;
+    width: 25%;
+    height: 65%;
+    background-color: azure;
+    top: 25%;
+    left: 37%;
+    border-radius: 20px;
+    box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.5);
+    
+}
+
+.signup-name{
+    position: relative;
+    /* width: 20vw; */
+    display: block;
+    left: 36%;
+    top: 20vh;
+}
+.signup-email-field{
+    position: relative;
+    /* width: 20vw; */
+    display: block;
+    left: 8%;
+    top: 30.5vh;
+}
+.signup-pass-field{
+    position: relative;
+    /* width: 20vw; */
+    display: block;
+    left: -20%;
+    top: 41.5vh;
+}
+.signup-btn{
+    position: relative;
+    left: -38%;
+    height: 4vh;
+    top: 55vh;
+}
