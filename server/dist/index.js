@@ -44,7 +44,7 @@ app.use("/api/qna", qnaRoutes);
 io.on("connect", (socket) => {
     socket.on("new-que", (newquestion) => {
         //socket.broadcast.emit("que-rec",newquestion);
-        console.log("New message", newquestion);
+        console.log(newquestion);
         socket.broadcast.emit('new-que', newquestion);
     });
 });

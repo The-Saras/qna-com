@@ -55,7 +55,7 @@ io.on("connect",(socket:any)=>{
  
   socket.on("new-que",(newquestion:any)=>{
     //socket.broadcast.emit("que-rec",newquestion);
-    console.log("New message", newquestion)
+    console.log( newquestion)
     socket.broadcast.emit('new-que',newquestion);
   })
 })

@@ -6,18 +6,20 @@ import { questions } from "../atoms/qna";
 import { useRecoilState } from "recoil";
 import SingleQuestion from "./SingleQuestion";
 import PostQuestion from "./PostQuestion";
-import io from 'socket.io-client';
-const socket = io('http://localhost:3000',{
+import * as io from "socket.io-client";
+const socket = io.connect('http://localhost:3000',{
     reconnection:true
 })
 type Question = {
-    
+    _id:string
     text: string;
 };
 const QnaPage = () =>{
     const {qnaid} = useParams();
     const [question,setQuestions] = useRecoilState<Question[]>(questions);
-    const [newquestions,setNewquestions] = useState<Question[]>([]);
+    const [newquestions,setNewquestions] = useState<Question[]>(question);
+    const [newQ,setnewqu] = useState([]);
+    
     const headers:HeadersInit = {
         "authorization": localStorage.getItem("jwtToken") || "",
         'Content-Type': 'application/json',
@@ -36,16 +38,19 @@ const QnaPage = () =>{
     }
     useEffect(()=>{
         fetchQnaData()
-        
-    },[])
-    socket.on('new-que',(newpost)=>{
-            setNewquestions(prevQuestions => [...prevQuestions, newpost]);
+        socket.on('new-que',(newpost:any)=>{
+            //setnewqu(prevque=>[...prevque ,newpost]);
+            setQuestions((state)=>[...state,newpost]);
         })
+    },[question])
+    const renderQue = question.concat(newQ);
     const collection = newquestions.length > 0 ?newquestions:question
+    console.log(collection)
     return(
         <>
+        
         <PostQuestion location={qnaid}/>
-            { collection.map((value:any)=>{
+            { question.map((value:any)=>{
                 return(
                     <span key={value._id}>
                     <SingleQuestion text={value.text} location={value._id}/>

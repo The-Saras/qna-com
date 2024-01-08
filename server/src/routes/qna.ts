@@ -69,7 +69,7 @@ router.post("/createque/:location",authenticateJWT,async(req,res)=>{
     const QueAsked = await QuesstionModel.create({text:text});
     QueToUpload.questions.push(QueAsked)
     QueToUpload.save()
-    res.json({ QueAsked });
+    res.json( QueAsked );
 });
 
 

@@ -6,9 +6,10 @@ import axios from "axios"
 
 import { useState } from "react"
 import {Alert} from "@mui/material"
-import io from 'socket.io-client';
+import * as io from "socket.io-client";
 
-const socket = io('http://localhost:3000',{
+
+const socket = io.connect('http://localhost:3000',{
     reconnection:true
 })
 const PostQuestion = (props:any) => {
@@ -35,6 +36,7 @@ const PostQuestion = (props:any) => {
             if(response){
                 
                 setLoading(true);
+                const data = response.data;
                 socket.emit('new-que', response.data)
                 console.log(response)
                

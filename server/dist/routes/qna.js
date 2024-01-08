@@ -62,7 +62,7 @@ router.post("/createque/:location", authenticateJWT, (req, res) => __awaiter(voi
     const QueAsked = yield QuesstionModel.create({ text: text });
     QueToUpload.questions.push(QueAsked);
     QueToUpload.save();
-    res.json({ QueAsked });
+    res.json(QueAsked);
 }));
 router.get("/allqna", authenticateJWT, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
