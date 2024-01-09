@@ -4,6 +4,12 @@ import {  emailState, passwordState } from "../atoms/user";
 import { useState } from "react";
 import axios from "axios";
 
+import Login_NavBar from "./Login_NavBar";
+import Login_OuterBox from "./Login_OuterBox";
+import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/login_page.css"
+
+
+
 const Login = () => {
    
     const [email, setEmail] = useRecoilState(emailState);
@@ -41,6 +47,8 @@ const Login = () => {
         <>
             <div>
                 <Container>
+                    <Login_NavBar />
+                    <Login_OuterBox />
                     <Grid container spacing={2} justifyContent="center" alignItems="center">
                     {showAlert && (
                                 <Alert severity="success" onClose={() => setShowAlert(false)}>
@@ -48,7 +56,7 @@ const Login = () => {
                                 </Alert>
                             )}
                         <Grid item xs={12}>
-                            <Typography variant="h4" align="center">
+                            <Typography style={{fontSize: '23px', fontFamily: 'Times New Roman, Times, serif'}} className="login-title" variant="h4" align="center">
                                Login Form
                             </Typography>
                         </Grid>
@@ -61,7 +69,9 @@ const Login = () => {
                                 margin="normal"
                                 required
                                 onChange={(e) => { setEmail(e.target.value) }}
-                            />
+                                className="login-email-field"
+                                style={{width: '28%'}}
+                                />
                             <TextField
                                 fullWidth
                                 label="Password"
@@ -69,8 +79,10 @@ const Login = () => {
                                 margin="normal"
                                 required
                                 onChange={(e) => { setPassword(e.target.value) }}
+                                className="login-pass-field"
+                                style={{width: '28%'}}
                             />
-                            <Button variant="contained" color="primary" onClick={handleSubmit}>Signup</Button>
+                            <Button className="login-btn" variant="contained" color="primary" onClick={handleSubmit}>Signup</Button>
                             
                         </Grid>
                     </Grid>

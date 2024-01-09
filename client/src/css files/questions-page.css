@@ -1,0 +1,16 @@
+.qpage-add-btn{
+    position: relative;
+    top: 1vh;
+    left: 3%;
+    height: 5vh;
+}
+
+.questions-page-cards{
+    position: relative;
+    top: 4vh;
+    
+}
+
+.questions-page-cards:hover{
+    box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.5);
+}

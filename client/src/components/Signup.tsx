@@ -4,6 +4,11 @@ import { nameState, emailState, passwordState } from "../atoms/user";
 import { useState } from "react";
 import axios from "axios";
 
+import SignUp_OuterBox from "./SignUp_OuterBox";
+import SignUp_NavBar from "./SignUp_NavBar";
+import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/signup_page.css"
+
+
 const Signup = () => {
     const [name, setName] = useRecoilState(nameState);
     const [email, setEmail] = useRecoilState(emailState);
@@ -41,6 +46,8 @@ const Signup = () => {
         <>
             <div>
                 <Container>
+                    <SignUp_NavBar />
+                    <SignUp_OuterBox />
                     <Grid container spacing={2} justifyContent="center" alignItems="center">
                     {showAlert && (
                                 <Alert severity="success" onClose={() => setShowAlert(false)}>
@@ -48,7 +55,7 @@ const Signup = () => {
                                 </Alert>
                             )}
                         <Grid item xs={12}>
-                            <Typography variant="h4" align="center">
+                            <Typography style={{fontSize: '23px', fontFamily: 'Times New Roman, Times, serif'}} className="signup-title" variant="h4" align="center">
                                 Signup Form
                             </Typography>
                         </Grid>
@@ -60,8 +67,11 @@ const Signup = () => {
                                 margin="normal"
                                 required
                                 onChange={(e) => { setName(e.target.value) }}
+                                className="signup-name"
+                                style={{width: '28%'}}
 
-                            />
+                                
+                                />
                             <TextField
                                 fullWidth
                                 label="Email"
@@ -69,7 +79,10 @@ const Signup = () => {
                                 margin="normal"
                                 required
                                 onChange={(e) => { setEmail(e.target.value) }}
-                            />
+                                className="signup-email-field"
+                                style={{width: '28%'}}
+
+                                />
                             <TextField
                                 fullWidth
                                 label="Password"
@@ -77,8 +90,11 @@ const Signup = () => {
                                 margin="normal"
                                 required
                                 onChange={(e) => { setPassword(e.target.value) }}
+                                className="signup-pass-field"
+                                style={{width: '28%'}}
+
                             />
-                            <Button variant="contained" color="primary" onClick={handleSubmit}>Signup</Button>
+                            <Button className="signup-btn" variant="contained" color="primary" onClick={handleSubmit}>Signup</Button>
                             
                         </Grid>
                     </Grid>

@@ -2,6 +2,8 @@ import { Button, TextField } from "@mui/material";
 import { qnaCreate } from "../atoms/qna";
 import { useRecoilState } from "recoil";
 import axios from "axios";
+import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/home.css"
+
 const CreateQna = () =>{
     const [qna,setQna] = useRecoilState(qnaCreate);
     const headers:HeadersInit = {
@@ -27,10 +29,10 @@ const CreateQna = () =>{
     }
     return(
         <>
-            <TextField variant="outlined" label="Name your QNA" onChange={(e)=>{
+            <TextField className="home-textfield" variant="outlined" label="Name your QNA" onChange={(e)=>{
                 setQna(e.target.value);
             }} />
-            <Button variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
+            <Button className="home-add-button"  variant="contained" color="primary" onClick={handleSubmit}>Submit</Button>
         </>
     )
 }

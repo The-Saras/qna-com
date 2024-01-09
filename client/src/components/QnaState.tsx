@@ -5,6 +5,9 @@ import { useEffect } from "react"
 import { useState } from "react"
 import Qna from "./Qna"
 
+import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/home.css"
+
+
 const QnaState = () =>{
     const [qna,setQna] = useRecoilState(qnaItems)
     const [loading, setLoading] = useState(true);
@@ -36,15 +39,21 @@ const QnaState = () =>{
         <p>Loading...</p>
       ) : (
         <>
-          {qna.map((value: any) => (
-            
-            <span key={value._id}>
+          
 
-              <Qna name={value.name} creator={value.createdBy.name} _id={value._id} />
-              <br />
-            
-            </span>
-          ))}
+          <div className="home-qna-page">
+
+            {qna.map((value: any) => (
+              
+              <span  key={value._id}>
+
+                <Qna  name={value.name} creator={value.createdBy.name} _id={value._id} />
+                <br />
+              
+              </span>
+            ))}
+
+          </div>
         </>
       )}
         </>

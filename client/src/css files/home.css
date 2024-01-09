@@ -1,0 +1,133 @@
+body{
+    overflow-x: hidden;   
+}
+.home-navbar{
+    width: 99%;
+    height: 6rem;
+    position: relative;
+    left: 0.6%;
+    background-color: lightseagreen;
+    display: flex;
+
+}
+.home-navbar ul{
+    display: flex;
+    position: relative;
+    list-style: none;
+    left: 75%;
+    top: 10%;
+}
+.home-navbar ul li{
+    margin:  10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.home-navbar ul li:first-of-type:hover:after{
+    content: "";
+    position: absolute;
+    background-color: red;
+    bottom: 45%;
+    width: 28%;
+    height: 2px;
+    left: 27.5%;
+}
+.home-navbar ul li:last-of-type:hover:after{
+    content: "";
+    position: absolute;
+    background-color: red;
+    bottom: 45%;
+    width: 28%;
+    height: 2px;
+    left: 66%;
+}
+.home-page-title{
+    position: relative;
+    left: 45%;
+    top: 12%;
+    font-size: 22px;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;    
+    
+    
+}
+
+.home-textfield{
+    position: relative;
+    left: 43%;
+    top: 4vh;
+}
+
+.home-add-button{
+    position: relative;
+    left: 45%;
+    top: 4.9vh;
+}
+
+.MuiInputBase-root{
+    height: 40px;
+    top: 1vh;
+}
+
+.home-qna-page{
+    
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr)); 
+    gap: 10px; 
+    top: 10vh;
+    width: 99%;
+    left: 0.5%;
+    background-color: azure;
+    box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    
+}
+
+
+
+.home-qna{
+    position: relative;
+    left: 17%;
+    width: 90%;
+    height: 90%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    
+    
+}
+.home-qna:hover{
+    background-color: azure;
+    box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.5);
+
+}
+
+.home-qna-title{
+    position: relative;
+    text-align: center;
+}
+.home-qna-subtitle{
+    position: relative;
+    text-align: center;
+}
+
+
+.home-qna-visit-btn{
+    position: relative;
+    left: 38%;
+    height: 4vh;
+    top: 1vh;
+}
+
+.home-qna-border{
+    position: absolute;
+    background-color: black;
+    width: 99%;
+    height: 10%;
+    /* z-index: 1; */
+}
+
+
+
