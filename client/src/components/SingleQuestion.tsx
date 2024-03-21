@@ -3,8 +3,8 @@ import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import axios from "axios";
 import { useState } from "react";
 
-import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/questions-page.css"
-
+//import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/questions-page.css"
+import "../css files/questions-page.css"
 
 const SingleQuestion = (props:any)=>{
     const clckLimit = 1;

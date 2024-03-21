@@ -2,7 +2,8 @@ import { Button, TextField } from "@mui/material";
 import { qnaCreate } from "../atoms/qna";
 import { useRecoilState } from "recoil";
 import axios from "axios";
-import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/home.css"
+//import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/home.css"
+import "../css files/home.css"
 
 const CreateQna = () =>{
     const [qna,setQna] = useRecoilState(qnaCreate);

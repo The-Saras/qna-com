@@ -6,7 +6,7 @@ import axios from "axios";
 
 import Login_NavBar from "./Login_NavBar";
 import Login_OuterBox from "./Login_OuterBox";
-import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/login_page.css"
+import "../css files/login_page.css"
 
 
 

@@ -5,8 +5,8 @@ import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import { useNavigate } from "react-router-dom";
-import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/home.css"
-
+//import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/home.css"
+import "../css files/home.css"
 const Qna = (props: any) => {
   const navigate = useNavigate();
   return (

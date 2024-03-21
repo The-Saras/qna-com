@@ -5,8 +5,8 @@ import { useEffect } from "react"
 import { useState } from "react"
 import Qna from "./Qna"
 
-import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/home.css"
-
+//import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/home.css"
+import "../css files/home.css"
 
 const QnaState = () =>{
     const [qna,setQna] = useRecoilState(qnaItems)

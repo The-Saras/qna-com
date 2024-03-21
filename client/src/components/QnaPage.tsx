@@ -38,7 +38,7 @@ const QnaPage = () =>{
     }
     useEffect(()=>{
         fetchQnaData()
-        socket.on('new-que',(newpost:any)=>{
+        socket.on('new-que',(newpost:Question)=>{
             //setnewqu(prevque=>[...prevque ,newpost]);
             setQuestions((state)=>[...state,newpost]);
         })

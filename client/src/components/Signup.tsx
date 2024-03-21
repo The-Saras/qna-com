@@ -6,8 +6,8 @@ import axios from "axios";
 
 import SignUp_OuterBox from "./SignUp_OuterBox";
 import SignUp_NavBar from "./SignUp_NavBar";
-import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/signup_page.css"
 
+import "../css files/signup_page.css"
 
 const Signup = () => {
     const [name, setName] = useRecoilState(nameState);

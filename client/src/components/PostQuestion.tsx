@@ -8,8 +8,7 @@ import { useState } from "react"
 import {Alert} from "@mui/material"
 import * as io from "socket.io-client";
 
-import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/questions-page.css"
-
+import "../css files/questions-page.css"
 
 const socket = io.connect('http://localhost:3000',{
     reconnection:true

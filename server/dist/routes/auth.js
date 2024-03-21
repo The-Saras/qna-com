@@ -73,7 +73,7 @@ router.get("/me", authenticateJWT, (req, res) => __awaiter(void 0, void 0, void 
     const usreId = req.headers['userId'];
     const user = yield UserModel.findOne({ _id: usreId }).select("-password");
     if (user) {
-        return res.json({ user });
+        return res.json(user);
     }
     else {
         res.status(403).json({ message: "User not logged in!" });
