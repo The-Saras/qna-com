@@ -1,3 +1,16 @@
+<<<<<<< HEAD
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+=======
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap');
+
+
+:root{
+  font-family: "Montserrat",Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+    font-weight: 500;
+
+}
+
+>>>>>>> 6eee36eb7ed6de0e8a3deae568057c28c885fdd8

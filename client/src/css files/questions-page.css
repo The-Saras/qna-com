@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .questions-page-container {
     display: flex;
     justify-content: center;
@@ -24,3 +25,21 @@
     font-size: 30px; /* Adjusts the size of the icon */
   }
   
+=======
+.qpage-add-btn{
+    position: relative;
+    top: 1vh;
+    left: 3%;
+    height: 5vh;
+}
+
+.questions-page-cards{
+    position: relative;
+    top: 4vh;
+    
+}
+
+.questions-page-cards:hover{
+    box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.5);
+}
+>>>>>>> 6eee36eb7ed6de0e8a3deae568057c28c885fdd8
