@@ -1,24 +1,33 @@
-import React from "react";
-//import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/home.css"
 
-import "../css files/home.css"
 import { useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
-const NavBar = () => {
-    const navigate = useNavigate();
-    return(
-        <>
-            <div className="home-navbar">
-                <h2 className="home-page-title">QNA.Com</h2>
-                <ul>
-                    <li  onClick={()=>{navigate('/signup')}}>Signup</li>
-                    <li onClick={()=>{navigate('/login')}}>LogIn</li>
-                    
-                </ul>
-            </div>
-            
-        </>
-    )
-} 
 
-export default NavBar
+const NavBar = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="bg-gray-800 text-white flex justify-between items-center p-4">
+      {/* Title */}
+      <h2 className="text-2xl font-bold cursor-pointer" onClick={() => navigate("/")}>
+        QNA.Com
+      </h2>
+
+      {/* Navigation Links */}
+      <ul className="flex space-x-6">
+        <li
+          className="cursor-pointer text-lg hover:text-green-400 transition duration-200"
+          onClick={() => navigate("/signup")}
+        >
+          Signup
+        </li>
+        <li
+          className="cursor-pointer text-lg hover:text-green-400 transition duration-200"
+          onClick={() => navigate("/login")}
+        >
+          LogIn
+        </li>
+      </ul>
+    </div>
+  );
+};
+
+export default NavBar;

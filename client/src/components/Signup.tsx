@@ -5,7 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 
 import SignUp_OuterBox from "./SignUp_OuterBox";
-import SignUp_NavBar from "./SignUp_NavBar";
+
 
 import "../css files/signup_page.css"
 
@@ -46,7 +46,7 @@ const Signup = () => {
         <>
             <div>
                 <Container>
-                    <SignUp_NavBar />
+                    
                     <SignUp_OuterBox />
                     <Grid container spacing={2} justifyContent="center" alignItems="center">
                     {showAlert && (

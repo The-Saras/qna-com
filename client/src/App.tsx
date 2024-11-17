@@ -13,6 +13,7 @@ import {
   useRecoilValue,
 } from 'recoil';
 import QnaPage from './components/QnaPage';
+import NavBar from './components/NavBar';
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
     <>
     <Router>
       <RecoilRoot>
-        
+        <NavBar />
           <Routes>
 
             <Route path={'/'} element={<Home />} />

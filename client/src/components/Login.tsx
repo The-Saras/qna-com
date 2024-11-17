@@ -47,7 +47,7 @@ const Login = () => {
         <>
             <div>
                 <Container>
-                    <Login_NavBar />
+                    
                     <Login_OuterBox />
                     <Grid container spacing={2} justifyContent="center" alignItems="center">
                     {showAlert && (

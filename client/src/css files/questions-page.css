@@ -1,16 +1,26 @@
-.qpage-add-btn{
-    position: relative;
-    top: 1vh;
-    left: 3%;
-    height: 5vh;
-}
-
-.questions-page-cards{
-    position: relative;
-    top: 4vh;
-    
-}
-
-.questions-page-cards:hover{
-    box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.7);
-}
+.questions-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Centers the content vertically */
+  }
+  
+  .questions-page-cards {
+    width: 400px; /* Controls the width of the card */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+  }
+  
+  .upvote-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .upvote-button:disabled {
+    cursor: not-allowed;
+  }
+  
+  .upvote-button svg {
+    font-size: 30px; /* Adjusts the size of the icon */
+  }
+  

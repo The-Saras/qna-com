@@ -1,28 +1,39 @@
-import React from 'react';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardActions from '@mui/material/CardActions';
-import Button from '@mui/material/Button';
-import { Typography } from '@mui/material';
+import React from "react";
 import { useNavigate } from "react-router-dom";
-//import "C:/Users/tx/Desktop/QNA.COM/qna-com/client/src/css files/home.css"
-import "../css files/home.css"
-const Qna = (props: any) => {
+import { MessageCircle, PlusCircle, Bell, User } from "lucide-react";
+
+interface QnaProps {
+  name: string;
+  creator: string;
+  _id: string;
+}
+
+const Qna: React.FC<QnaProps> = (props) => {
   const navigate = useNavigate();
+
   return (
-    <>
-      <Card className="home-qna" style={{ maxWidth: '300px', margin: '10px' }} >
-        <CardHeader className='home-qna-title' title={props.name} />
-        <Typography  className='home-qna-subtitle'  style={{ paddingLeft: '15px', fontWeight: 'bold' }}>Creator: {props.creator}</Typography>
-        <CardActions>
-          <Button className='home-qna-visit-btn' variant="contained" color="primary" onClick={()=>{
-            navigate(`/getallque/${props._id}`)
-          }}>
-            Visit
-          </Button>
-        </CardActions>
-      </Card>
-    </>
+    <div className="bg-white dark:bg-gray-800 overflow-hidden shadow rounded-lg">
+      <div className="p-5">
+        <div className="flex items-center">
+          <div className="flex-shrink-0">
+            <MessageCircle className="h-6 w-6 text-gray-400 dark:text-gray-300" />
+          </div>
+          <div className="ml-5 w-0 flex-1">
+            <button
+              onClick={() => {
+                navigate(`/getallque/${props._id}`);
+              }}
+              className="text-lg font-medium text-indigo-600 dark:text-indigo-400 truncate hover:underline"
+            >
+              {props.name}
+            </button>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              Created by {props.creator}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
